@@ -43,4 +43,3 @@ Per a més informació o per posar-te en contacte amb l'autora, pots visitar els
 - [GitHub d'Ana Lucía Silva Córdoba](https://github.com/alusilcof5)
 
 
-# dona-data-comunitats
