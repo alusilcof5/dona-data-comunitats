@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/directory.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/study.css">
+    <link rel="stylesheet" href="./css/layout.css">
+
+
+    <title>Directorio de Comunidades de Mujeres en Tecnología - Barcelona</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/logo-dona.png" alt="Logo" class="logo-img">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="./directory.html" class="nav-link">Directori</a></li>
+                <li><a href="./dashboard.html" class="nav-link">Estudi</a></li>
+                <li><a href="./info.html" class="nav-link">Informació</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <br>
+            <h1>Directori de Comunitats</h1>
+            <p>Plataforma de recerca per analitzar l’impacte de les comunitats professionals de dones en la reducció de
+                la bretxa de gènere en el sector tecnològic</p>
+            <br>
+        </div>
+
+        <input type="text" class="search-box" id="searchBox" placeholder="🔍 Cercar comunitats...">
+
+        <div class="communities-section">
+            <div class="section-header">
+                <h2 class="section-title">Directori de Comunitats</h2>
+                <div class="results-count" id="resultsCount">Mostrant totes les comunitats</div>
+            </div>
+
+            <div class="community-grid" id="communitiesGrid">
+                <!-- Les comunitats es carregaran aquí -->
+            </div>
+
+            <div class="no-results" id="noResults" style="display: none;">
+                <h3>No s’han trobat comunitats</h3>
+                <p>Intenta ajustar la cerca</p>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <h1>Dones en Tecnologia Barcelona</h1>
+            <p class="subtitle">Cronologia (1990-2025)</p>
+            <div class="timeline">
+                <div class="decade-marker">Anys 90 - Fundacions</div>
+
+                <div class="timeline-item left" style="--index: 1">
+                    <div class="content">
+                        <h2>1996</h2>
+                        <p><span class="badge">Teoria</span>Publicació sobre <span class="highlight">síndromes
+                                culturals</span>. La publicació sobre síndromes culturals per Harry Triandis el 1996 és
+                            fonamental perquè introdueix un marc teòric sòlid per entendre com les normes, valors i
+                            creences compartides per una cultura influeixen en el comportament col·lectiu de les
+                            persones. Proporciona l'andamiatge teòric per analitzar com la cultura impacta el gènere en
+                            tecnologia.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="--index: 2">
+                    <div class="content">
+                        <h2>1997-1998</h2>
+                        <p><span class="badge">Xarxa local</span>Fundació de <span class="highlight">Barcelona Women's
+                                Network</span>. La creació de Barcelona Women’s Network (BWN) representa un moment clau
+                            en la construcció d'espais de suport, visibilitat i comunitat per a dones professionals en
+                            contextos internacionals. Tot i que no va sorgir específicament en el sector tecnològic, el
+                            seu impacte anticipa les xarxes actuals que promouen l'equitat de gènere en tecnologia.</p>
+                    </div>
+                </div>
+
+                <div class="decade-marker">Anys 2000 - Primeres Comunitats Tech</div>
+
+                <div class="timeline-item left" style="--index: 3">
+                    <div class="content">
+                        <h2>2006</h2>
+                        <p><span class="badge">Grassroots</span>Llançament de <span class="highlight">Dones en
+                                Xarxa</span>, impulsant l’ús de TIC per a la participació pública de dones i enfortint
+                            la seva visibilitat digital a Catalunya. Inicis de <span class="highlight">Donestech</span>,
+                            cooperativa feminista de recerca sobre dones i tecnologia. L’any 2006 marca un punt
+                            d’inflexió a l’ecosistema digital català i espanyol: per primera vegada, emergeixen
+                            iniciatives feministes de base (grassroots) que articulen l’ús de les TIC no només com a
+                            eina tècnica, sinó com a mitjà polític, social i cultural per empoderar les dones.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="--index: 4">
+                    <div class="content">
+                        <h2>2007</h2>
+                        <p><span class="badge">Mentoria</span>Inicis del <span class="highlight">PWN Barcelona Mentoring
+                                Program</span> el 2007 marca un pas estratègic en la promoció del lideratge femení
+                            mitjançant una eina clau: la mentoria estructurada entre dones professionals. Tot i que el
+                            seu programa formal es va llançar el 2016, aquest punt de partida és fonamental perquè
+                            introdueix una cultura de mentoria amb perspectiva de gènere a Barcelona, en un moment en
+                            què el concepte encara no estava estès ni normalitzat en molts sectors, inclòs el
+                            tecnològic.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left" style="--index: 5">
+                    <div class="content">
+                        <h2>2010</h2>
+                        <p><span class="badge">Comunitat</span>Primers esdeveniments de <span class="highlight">Girls in
+                                Tech Barcelona</span> és una fita clau perquè introdueix per primera vegada a la ciutat
+                            una comunitat centrada específicament en empoderar dones joves en l'àmbit tecnològic i
+                            emprenedor. Marca el naixement d’una comunitat que impulsa activament la participació de
+                            dones joves en la tecnologia i l’emprenedoria, plantant les bases per a una generació de
+                            líders digitals amb perspectiva de gènere.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="--index: 6">
+                    <div class="content">
+                        <h2>2012</h2>
+                        <p><span class="badge">Comunitat</span>Fundació de <span class="highlight">AdaJS
+                                Barcelona</span>, grup local que promou l’aprenentatge pràctic de JavaScript entre dones
+                            i crea espais de col·laboració tècnica. La fundació d’AdaJS Barcelona és important perquè
+                            combina formació tècnica, empoderament i comunitat per reduir la bretxa de gènere en
+                            programació, ajudant a què més dones accedeixin, romanguin i prosperin en el món del
+                            desenvolupament web.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left" style="--index: 7">
+                    <div class="content">
+                        <h2>2013</h2>
+                        <p><span class="badge">Visibilitat</span>Primera celebració de l’<span class="highlight">Ada
+                                Lovelace Day Barcelona</span> en format local, destacant els èxits de dones en ciència i
+                            tecnologia i fomentant referents femenins.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="--index: 8">
+                    <div class="content">
+                        <h2>2014</h2>
+                        <p><span class="badge">Capacitació</span>Llançament de <span class="highlight">Rails Girls
+                                Barcelona</span>, part del moviment global per ensenyar desenvolupament web a dones
+                            sense experiència prèvia en programació.</p>
+                    </div>
+                </div>
+
+                <div class="decade-marker">2015-2020 - Consolidació Institucional</div>
+
+                <div class="timeline-item left" style="--index: 9">
+                    <div class="content">
+                        <h2>2015</h2>
+                        <p><span class="badge">Política pública</span>Inici de programes de suport a dones emprenedores
+                            per <span class="highlight">Barcelona Activa</span> i llançament de <span
+                                class="highlight">LIDERA</span>, integrant l’equitat de gènere en l’emprenedoria tech.
+                            Adopció oficial de l’Agenda 2030 i l’ODS 5. És important perquè marca el reconeixement
+                            institucional del paper de les dones en l’economia digital, articulant polítiques públiques
+                            concretes amb objectius globals d’igualtat (ODS 5). Representa un punt d’inflexió: del
+                            comunitari a l’estructural.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="--index: 10">
+                    <div class="content">
+                        <h2>2016</h2>
+                        <p><span class="badge">Mentoria</span>Llançament formal del programa de mentoria de <span
+                                class="highlight">PWN Barcelona</span>. Fundació de <span class="highlight">Lean In
+                                Network BCN</span>, connectant dones professionals per avançar en les seves carreres.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left" style="--index: 11">
+                    <div class="content">
+                        <h2>2017</h2>
+                        <p><span class="badge">Educació</span>Publicació de la UNESCO sobre educació STEM per a nenes.
+                            El 2017 és clau perquè marca l’articulació entre el diagnòstic global del problema de gènere
+                            a STEM (UNESCO, estudis sobre estereotips) i la creació de solucions educatives locals com
+                            AllWomen Tech, que aborden l’accés de dones a tecnologies emergents com la intel·ligència
+                            artificial des d’una perspectiva feminista.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="--index: 12">
+                    <div class="content">
+                        <h2>2018</h2>
+                        <p><span class="badge">Comunitats</span>Establiment del capítol <span class="highlight">Women
+                                Techmakers Barcelona</span> i de <span class="highlight">Wtech</span>. Expansió de
+                            l’ecosistema amb <span class="highlight">Geek Girls LatAm</span> amb presència local.
+                            Aquesta fita marca la consolidació de comunitats de dones en tecnologia com a actors clau de
+                            l’ecosistema local, articulades a nivell global, amb capacitat organitzativa i enfocament
+                            interseccional. És una etapa de maduresa del moviment a Barcelona.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="--index: 12">
+                    <div class="content">
+                        <h2>2018</h2>
+                        <p><span class="badge">Comunitats</span>Establiment del capítol <span class="highlight">Women
+                                Techmakers Barcelona</span> i de <span class="highlight">Wtech</span>. Expansió de
+                            l'ecosistema amb <span class="highlight">Geek Girls LatAm</span> amb presència local. Aquest
+                            fita marca la consolidació de comunitats de dones en tecnologia com a actors clau de
+                            l'ecosistema local, articulades a nivell global, amb capacitat organitzativa i enfocament
+                            interseccional. És una etapa de maduresa del moviment a Barcelona.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left" style="--index: 13">
+                    <div class="content">
+                        <h2>2019</h2>
+                        <p><span class="badge">Esdeveniments</span>Primera edició de <span
+                                class="highlight">SheStartup</span> organitzada per Barcelona Activa per visibilitzar
+                            emprenedories amb lideratge femení. Consolidació de <span class="highlight">SheCodes
+                                BCN</span>. Es visibilitza i es celebra públicament el lideratge femení en startups
+                            tecnològiques, i es consolida una comunitat local de programadores actives. Marca un moment
+                            on l’equitat de gènere comença a formar part central del discurs emprenedor a Barcelona.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="--index: 14">
+                    <div class="content">
+                        <h2>2020</h2>
+                        <p><span class="badge">Resiliència</span>Participació destacada de dones en la resposta digital
+                            davant la COVID-19 amb esdeveniments com <span class="highlight">Hackovid</span>. Expansió
+                            de <span class="highlight">Women in Mobile Barcelona</span>. Va ser una hackató ciutadana
+                            organitzada per la Generalitat de Catalunya i la Fundació i2CAT, l’abril de 2020, per
+                            dissenyar solucions digitals participatives durant el confinament per la COVID‑19. Va
+                            involucrar tant la ciutadania com la comunitat tecnològica, oferint oportunitats inclusives
+                            de col·laboració, encara que sense un enfocament específic de gènere.</p>
+                    </div>
+                </div>
+
+                <div class="decade-marker">2021-2025 - Era Actual i Projeccions</div>
+
+                <div class="timeline-item left" style="--index: 15">
+                    <div class="content">
+                        <h2>2021</h2>
+                        <p><span class="badge">Lideratge</span>Fundació de <span class="highlight">SheLeadsTech
+                                Barcelona</span>. Creació de la mesura de govern <span class="highlight">"BCN Fem Tech
+                                2021-2023"</span> de l’Ajuntament. Consolidació del programa. Publicació del DESI
+                            evidenciant bretxes digitals. SheLeadsTech Barcelona: un pas clau cap al lideratge de dones
+                            en tecnologia. “BCN Fem Tech 2021‑2023”: una mesura de govern municipal formal. Publicació
+                            del DESI: diagnòstic oficial sobre bretxes digitals.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="--index: 16">
+                    <div class="content">
+                        <h2>2022</h2>
+                        <p><span class="badge">Recerca</span>Publicació de l’informe <span class="highlight">"Gender Gap
+                                in Digital Skills"</span> per Digital Future Society (Barcelona). Estudis globals de
+                            McKinsey i UIT actualitzen l’agenda d’equitat tech. L’informe "Gender Gap in Digital Skills"
+                            (2022) és important perquè proporciona dades concretes, des d’una ciutat referent com
+                            Barcelona, sobre com i per què persisteix la desigualtat de gènere en habilitats digitals.
+                            Serveix com a eina estratègica per a institucions, empreses i comunitats que promouen una
+                            transformació digital més inclusiva.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left" style="--index: 17">
+                    <div class="content">
+                        <h2>2023</h2>
+                        <p><span class="badge">Consolidació</span>Llançament de <span class="highlight">TechFems</span>
+                            (octubre 2023, +700 dones+). Primera edició de <span class="highlight">CodeWomen Meetup
+                                Barcelona</span>. Consolidació de <span class="highlight">PyLadies Barcelona</span> al
+                            Canòdrom. Auge de <span class="highlight">Tech & Ladies</span> i <span
+                                class="highlight">Latinas en Tech Barcelona</span>. Barcelona ja compta amb un
+                            ecosistema tecnològic feminista en plena maduresa: amb múltiples comunitats
+                            interconnectades, diversitat cultural i de perfils, esdeveniments regulars, seus
+                            institucionals i una xarxa creixent de suport mutu.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="--index: 18">
+                    <div class="content">
+                        <h2>2024</h2>
+                        <p><span class="badge">Política/Normativa</span>Implementació de <span
+                                class="highlight">clàusules d’igualtat de gènere</span> en convenis públics tecnològics.
+                            <span class="highlight">Women in Tech Day 2024</span> per Tech Barcelona. Consolidació de
+                            <span class="highlight">TechBcn4Women</span>. Dades: les dones lideren màrqueting digital
+                            (54%) i UX/UI (44%) però només 20% en ciberseguretat. Barcelona ha implementat clàusules
+                            d’igualtat de gènere en convenis tecnològics i ha consolidat esdeveniments com el Women in
+                            Tech Day i la comunitat TechBcn4Women. Les dones lideren en màrqueting digital i UX/UI, però
+                            encara estan infrarepresentades en ciberseguretat. Aquest avanç institucionalitza l’equitat
+                            i guia accions focalitzades en el sector tech.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="--index: 19">
+                    <div class="content">
+                        <h2>2025</h2>
+                        <p><span class="badge">Projecció</span>Creixement exponencial de comunitats: <span
+                                class="highlight">FemCoders Club</span>, <span class="highlight">Women in Blockchain
+                                Barcelona</span>, <span class="highlight">FemDevs</span> (videojocs), <span
+                                class="highlight">OutGeekWomen</span>. Consolidació de programes en coworkings com <span
+                                class="highlight">Talent Garden</span> i <span class="highlight">Aticco Women</span>.
+                            <span class="highlight">Impact Hub Barcelona Women Entrepreneurs Network</span>.
+                        </p>
+                    </div>
+                </div>
+
+
+                <script>
+                    // Animación de entrada escalonada
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const items = document.querySelectorAll('.timeline-item');
+                        items.forEach((item, index) => {
+                            item.style.setProperty('--index', index);
+                        });
+                    });
+
+                    // Interacción de expandir/contraer
+                    document.querySelectorAll('.content').forEach(item => {
+                        item.addEventListener('click', () => {
+                            item.classList.toggle('expanded');
+                        });
+                    });
+
+                    document.getElementById('expand-all').addEventListener('click', () => {
+                        document.querySelectorAll('.content').forEach(c => c.classList.add('expanded'));
+                    });
+
+                    document.getElementById('collapse-all').addEventListener('click', () => {
+                        document.querySelectorAll('.content').forEach(c => c.classList.remove('expanded'));
+                    });
+
+                    // Efecto parallax suave en scroll
+                    window.addEventListener('scroll', () => {
+                        const scrollY = window.scrollY;
+                        const items = document.querySelectorAll('.timeline-item');
+
+                        items.forEach((item, index) => {
+                            const speed = 0.02;
+                            const yPos = scrollY * speed * (index % 2 === 0 ? 1 : -1);
+                            item.style.transform = `translateY(${yPos}px)`;
+                        });
+                    });
+                </script>
+
+
+                <footer class="footer">
+                    <div class="footer-container">
+                        <div class="footer-content">
+                            <div class="footer-left">
+                            </div>
+                            <div class="footer-right">
+                                <div class="social-links">
+                                    <a href="https://www.linkedin.com/in/ana-lucia-silva-cordoba/">
+                                        <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+                                        <span class="sr-only">LinkedIn</span>
+                                    </a>
+                                    <a href="https://github.com/alusilcof5"><i class="fab fa-github fa-2x"
+                                            aria-hidden="true"></i><span class="sr-only">GitHub</span></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="footer-bottom">
+                            <p>&copy; 2025 Ana Silva Córdoba — Projecte Final de Màster. Tots els dret reservats.</p>
+                        </div>
+                    </div>
+                </footer>
+                <script src="../controller/functions.js"></script>
+
+</body>
+
+</html>
