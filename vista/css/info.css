@@ -130,7 +130,7 @@
 
 /* Questions List */
 .questions-list {
-    max-width: 800px;
+    max-width: 1140px;
     margin: 0 auto;
 }
 
@@ -264,6 +264,32 @@
 .impact-label {
     color: var(--grey);
     margin-top: 0.5rem;
+}
+
+
+.section-subsection-title {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    color: #333;
+}
+
+.bibliography-list ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.bibliography-list li {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.bibliography-list a {
+    color: #0066cc;
+    text-decoration: underline;
+}
+
+.bibliography-list a:hover {
+    text-decoration: none;
 }
 
 
