@@ -4,19 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Analític</title>
-    <link rel="stylesheet" href="./css/layout.css">
-    <link rel="stylesheet" href="./css/chatbot.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Tauler Analític</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/directory.css">
     <style>
-        :root {
-            --primary: #667eea;
-            --ligth: #f8fafc;
-            --secondary: #2e005c;
-        }
-
         .nav-link.active {
             background: var(--ligth);
             color: var(--primary);
@@ -61,7 +54,7 @@
         }
 
         .filter-section {
-            background: linear-gradient(135deg, #2d0f53 0%, #a157f5 100%);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         }
 
         .loading-spinner {
@@ -95,50 +88,6 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
-
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 30px;
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            transition: background 0.3s ease;
-            /* Transición suave para el fondo */
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-img {
-            height: 120px;
-            width: auto;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            font-size: 1.1rem;
-            /* Tamaño de fuente más legible */
-            text-decoration: none;
-            color: var(--pcolor);
-            font-weight: 600;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .nav-menu a:hover {
-            background: var(--ligth);
-        }
     </style>
 </head>
 
@@ -150,12 +99,11 @@
             </a>
             <ul class="nav-menu">
                 <li><a href="./directory.html" class="nav-link">Directori</a></li>
+                <li><a href="./dashboard.html" class="nav-link">Estudi</a></li>
                 <li><a href="./info.html" class="nav-link">Informació</a></li>
-                <li><a href="./vista/dashboard.html" class="nav-link">Estudi</a></li>
             </ul>
         </div>
     </nav>
-
     <!-- Loading Screen -->
     <div id="loading" class="fixed inset-0 bg-white flex items-center justify-center z-50">
         <div class="text-center">
@@ -169,9 +117,8 @@
         <div class="text-center p-8">
             <div class="text-red-500 text-6xl mb-4">⚠️</div>
             <h2 class="text-2xl font-bold text-red-700 mb-2">Error en carregar les dades</h2>
-            <p id="error-message" class="text-red-600">No s'ha pogut accedir a l'arxiu 'output.json'. Verifiqueu que
-                estigui
-                a la mateixa carpeta que aquest arxiu.</p>
+            <p id="error-message" class="text-red-600">No s'ha pogut accedir al fitxer 'output.json'. Verificau que estigui
+                en la mateixa carpeta que aquest fitxer.</p>
         </div>
     </div>
 
@@ -197,7 +144,8 @@
                             onclick="showSection('impact')">Impacte</button>
                         <button class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                             onclick="showSection('barriers')">Barreres</button>
-
+                            <a href="result.html" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-gray-100">Resultats</a>
+                        
                     </div>
                     <div class="md:hidden">
                         <button id="mobile-menu-btn" class="text-gray-600 hover:text-gray-800">
@@ -226,19 +174,20 @@
                     onclick="showSection('impact'); toggleMobileMenu()">Impacte</button>
                 <button class="block w-full text-left px-4 py-2 rounded-lg text-sm font-medium"
                     onclick="showSection('barriers'); toggleMobileMenu()">Barreres</button>
-                <button class="block w-full text-left px-4 py-2 rounded-lg text-sm font-medium"
-                    onclick="showSection('data'); toggleMobileMenu()">Dades</button>
+                <a href="result.html" class="block w-full text-left px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100" onclick="toggleMobileMenu()">Resultats</a>
             </div>
         </div>
 
+       
+
         <!-- Stats Overview -->
-        <div class="bg-white border-b" style="color: var(--primary)">
-            <div class="max-w-7xl mx-auto px-4 py-6">
-                <div id="stats-container" class="grid grid-cols-2 md:grid-cols-5 gap-4" style="color: var(--primary)">
-                    <!-- Stats will be populated here -->
-                </div>
-            </div>
+<div class="bg-white border-b" style="color: var(--primary)">
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <div id="stats-container" class="grid grid-cols-2 md:grid-cols-4 gap-4" style="color: var(--primary)">
+            <!-- Stats will be populated here -->
         </div>
+    </div>
+</div>
 
         <!-- Filters -->
         <div class="filter-section">
@@ -276,16 +225,15 @@
             <section id="intro" class="section active">
                 <div class="hero-gradient text-white rounded-2xl p-8 mb-8">
                     <div class="max-w-4xl mx-auto text-center">
-                        <h1 class="text-4xl md:text-5xl font-bold mb-6">Anàlisi de l'impacte de les comunitats a
-                            Barcelona</h1>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6">Anàlisi de l'impacte de les comunitats a Barcelona</h1>
                         <div class="grid md:grid-cols-3 gap-6 text-center mb-[20px]">
                             <div class="bg-white/10 rounded-xl p-6">
                                 <div class="flex justify-center items-center mb-2">
                                     <img src="./dashboard/images/2.png" alt="icona" width="50" height="50">
                                 </div>
                                 <h3 class="font-semibold mb-2">Objectiu</h3>
-                                <p class="text-sm opacity-80">Avaluar l’impacte de les comunitats de dones en tecnologia
-                                    a Barcelona</p>
+                                <p class="text-sm opacity-80">Avaluar l'impacte de les comunitats de dones en
+                                    tecnologia a Barcelona</p>
                             </div>
                             <div class="bg-white/10 rounded-xl p-6">
                                 <div class="flex justify-center items-center mb-2">
@@ -301,41 +249,44 @@
                                     <img src="./dashboard/images/3.png" alt="icona ODS" width="40" height="40">
                                 </div>
                                 <h3 class="font-semibold mb-2">ODS</h3>
-                                <p class="text-sm opacity-80">Contribució als Objectius de Desenvolupament Sostenible
-                                </p>
+                                <p class="text-sm opacity-80">Contribució als Objectius de Desenvolupament Sostenible</p>
                             </div>
 
                         </div>
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Bloque 1: Contexto del Estudio -->
                         <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
-                            <div class="text-6xl text-center mb-4"><img src="./dashboard/images/10.png" alt=""
-                                    width="140" height="140"></div>
+                            <div class="flex justify-center items-center mb-4">
+                                <img src="./dashboard/images/10.png" alt="Icona context" width="80" height="80">
+                            </div>
                             <h2 class="text-2xl font-bold text-gray-800 mb-4">Context de l'Estudi</h2>
                             <p class="text-gray-600 mb-6">
-                                Aquest dashboard presenta els resultats d'una enquesta realitzada a professionals del
+                                Aquest tauler presenta els resultats d'una enquesta realitzada a professionals del
                                 sector tecnològic a Barcelona,
                                 amb l'objectiu d'analitzar l'impacte de les comunitats de dones en tecnologia.
                             </p>
                             <p class="text-gray-600">
-                                Les dades recopilades ens permeten entendre millor com aquestes iniciatives
-                                contribueixen a la inclusió,
+                                Les dades recopilades ens permeten entendre millor com aquestes iniciatives contribueixen a
+                                la inclusió,
                                 el desenvolupament professional i la superació de barreres en el sector tecnològic.
                             </p>
                         </div>
 
+                        <!-- Bloque 2: Áreas de Análisis -->
                         <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
-                            <div class="text-6xl text-center mb-4"><img src="./dashboard/images/4.png" alt=""
-                                    width="140" height="140"></div>
+                            <div class="flex justify-center items-center mb-4">
+                                <img src="./dashboard/images/4.png" alt="Icona àrees d'anàlisi" width="80" height="80">
+                            </div>
                             <h2 class="text-2xl font-bold text-gray-800 mb-4">Àrees d'Anàlisi</h2>
                             <ul class="space-y-3 text-gray-600">
                                 <li class="flex items-center"><span
                                         class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>Perfil sociodemogràfic de
                                     les participants</li>
                                 <li class="flex items-center"><span
-                                        class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Nivells de participació en
-                                    comunitats</li>
+                                        class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Nivells de participació
+                                    en comunitats</li>
                                 <li class="flex items-center"><span
                                         class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>Impacte en la inclusió
                                     tecnològica</li>
@@ -343,7 +294,8 @@
                                         class="w-2 h-2 bg-pink-500 rounded-full mr-3"></span>Barreres superades i
                                     beneficis obtinguts</li>
                                 <li class="flex items-center"><span
-                                        class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>Contribució als ODS</li>
+                                        class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>Contribució als ODS
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -353,11 +305,8 @@
             <!-- Demographics Section -->
             <section id="demographics" class="section">
                 <div class="mb-8">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="text-4xl mr-3"><img src="./dashboard/images/11.png" alt="" width="80"
-                                height="80"></span>
-                        Perfil Sociodemogràfic
-                    </h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4"><img src="./dashboard/images/11.png"
+                            alt="Icona perfil sociodemogràfic" width="50" height="50">Perfil Sociodemogràfic</h2>
                     <p class="text-gray-600">Característiques demogràfiques i professionals de les participants</p>
                 </div>
 
@@ -395,10 +344,8 @@
             <!-- Participation Section -->
             <section id="participation" class="section">
                 <div class="mb-8">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="text-4xl mr-3"><img src="./dashboard/images/5.png" alt="" width="80"
-                                height="80"></span>
-                        Participació en Comunitats
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4"><img src="./dashboard/images/5.png"
+                            alt="Icona participació" width="80" height="80"> Participació en Comunitats
                     </h2>
                     <p class="text-gray-600">Anàlisi de la participació activa en comunitats tecnològiques</p>
                 </div>
@@ -412,23 +359,9 @@
                     </div>
 
                     <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold mb-4">Rols Tècnics de Lideratge</h3>
+                        <h3 class="text-xl font-semibold mb-4">Rols Exercits (Últims 24 mesos)</h3>
                         <div class="chart-container">
                             <canvas id="roles-chart"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold mb-4">Estructura Organitzativa de Comunitats</h3>
-                        <div class="chart-container">
-                            <canvas id="structure-chart"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold mb-4">Forma Principal de Participació</h3>
-                        <div class="chart-container">
-                            <canvas id="participation-form-chart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -437,40 +370,24 @@
             <!-- Inclusion Section -->
             <section id="inclusion" class="section">
                 <div class="mb-8">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="text-4xl mr-3"><img src="./dashboard/images/6.png" alt="" width="80"
-                                height="80"></span>
-                        Inclusió en Entorns Tecnològics
-                    </h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4"><img src="./dashboard/images/6.png"
+                            alt="Icona inclusió" width="80" height="80"> Inclusió en Entorns
+                        Tecnològics</h2>
                     <p class="text-gray-600">Avaluació de l'impacte en la inclusió i pertinença</p>
                 </div>
 
                 <div class="grid lg:grid-cols-2 gap-8">
                     <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold mb-4">Contribució a la Inclusió</h3>
+                        <h3 class="text-xl font-semibold mb-4">Impacte en Inclusió</h3>
                         <div class="chart-container">
                             <canvas id="inclusion-impact-chart"></canvas>
                         </div>
                     </div>
 
                     <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold mb-4">Augment de Dones en Equips Tech</h3>
+                        <h3 class="text-xl font-semibold mb-4">Participació Activa vs Passiva</h3>
                         <div class="chart-container">
-                            <canvas id="women-increase-chart"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold mb-4">Pertinença Activa en Comunitats</h3>
-                        <div class="chart-container">
-                            <canvas id="active-membership-chart"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold mb-4">Estructura Col·laborativa i Equitat</h3>
-                        <div class="chart-container">
-                            <canvas id="collaborative-equity-chart"></canvas>
+                            <canvas id="active-participation-chart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -479,40 +396,23 @@
             <!-- Impact Section -->
             <section id="impact" class="section">
                 <div class="mb-8">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="text-4xl mr-3"><img src="./dashboard/images/7.png" alt="" width="80"
-                                height="80"></span>
-                        Impacte d'Iniciatives
-                    </h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4"><img src="./dashboard/images/7.png"
+                            alt="Icona impacte" width="80" height="80"> Impacte d'Iniciatives</h2>
                     <p class="text-gray-600">Anàlisi de l'impacte de les iniciatives comunitat-empresa</p>
                 </div>
 
                 <div class="grid lg:grid-cols-2 gap-8">
                     <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold mb-4">Activitats Efectives per a l'Equitat</h3>
+                        <h3 class="text-xl font-semibold mb-4">Beneficis Obtinguts</h3>
                         <div class="chart-container">
-                            <canvas id="equity-activities-chart"></canvas>
+                            <canvas id="benefits-chart"></canvas>
                         </div>
                     </div>
 
                     <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold mb-4">Contribució a ODS 5</h3>
+                        <h3 class="text-xl font-semibold mb-4">Contribució als ODS</h3>
                         <div class="chart-container">
                             <canvas id="ods-chart"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold mb-4">Expansió de Xarxa Professional</h3>
-                        <div class="chart-container">
-                            <canvas id="network-expansion-chart"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-6 shadow-lg">
-                        <h3 class="text-xl font-semibold mb-4">Accés a Oportunitats Laborals</h3>
-                        <div class="chart-container">
-                            <canvas id="job-opportunities-chart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -521,10 +421,8 @@
             <!-- Barriers Section -->
             <section id="barriers" class="section">
                 <div class="mb-8">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="text-4xl mr-3">🚧</span>
-                        Barreres Superades
-                    </h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4"><img src="./dashboard/images/8.png"
+                            alt="Icona barreres" width="80" height="80"> Barreres Superades</h2>
                     <p class="text-gray-600">Anàlisi de les barreres que les comunitats han ajudat a superar</p>
                 </div>
 
@@ -535,98 +433,38 @@
                     </div>
                 </div>
             </section>
+        </main>
 
-            <!-- Data Section 
-            <section id="data" class="section">
-                <div class="mb-8">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="text-4xl mr-3"></span>
-                        Dades Detallades
-                    </h2>
-                    <p class="text-gray-600">Exploració detallada de les respostes individuals</p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 shadow-lg">
-                    <div class="mb-4 flex justify-between items-center">
-                        <h3 class="text-xl font-semibold">Taula de Respostes</h3>
-                        <input type="text" id="search-input" placeholder="Cercar..."
-                            class="px-4 py-2 border rounded-lg">
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-8 mt-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Agraïments</h3>
+                        <p class="text-gray-300 text-sm">
+                            Gràcies a totes les professionals que van participar en aquesta enquesta,
+                            contribuint amb les seves experiències i perspectives.
+                        </p>
                     </div>
-
-                    <div class="overflow-x-auto">
-                        <table class="w-full table-auto">
-                            <thead>
-                                <tr class="bg-gray-50">
-                                    <th class="px-4 py-2 text-left">Edat</th>
-                                    <th class="px-4 py-2 text-left">Nacionalitat</th>
-                                    <th class="px-4 py-2 text-left">Educació</th>
-                                    <th class="px-4 py-2 text-left">Experiència</th>
-                                    <th class="px-4 py-2 text-left">Sector</th>
-                                    <th class="px-4 py-2 text-left">Participació</th>
-                                </tr>
-                            </thead>
-                            <tbody id="data-table-body">
-                                Data will be populated here 
-                            </tbody>
-                        </table>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Sobre el Projecte</h3>
+                        <p class="text-gray-300 text-sm">
+                            Aquest tauler forma part d'un treball acadèmic que analitza
+                            l'impacte de les comunitats de dones en tecnologia.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Contacte</h3>
+                        <p class="text-gray-300 text-sm">
+                            Per a més informació sobre aquest estudi o per a col·laboracions futures,
+                            no dubteu a contactar-nos.
+                        </p>
                     </div>
                 </div>
-            </section>
-        </main>-->
-
-           <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 mt-16">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Agraïments</h3>
-                    <p class="text-gray-300 text-sm">
-                        Gràcies a totes les professionals que van participar en aquesta enquesta,
-                        contribuint amb les seves experiències i perspectives.
-                    </p>
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+                    <p>&copy; 2025. Tots els drets reservats.</p>
                 </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Sobre el Projecte</h3>
-                    <p class="text-gray-300 text-sm">
-                        Aquest dashboard forma part d’un treball acadèmic que analitza
-                        l’impacte de les comunitats de dones en tecnologia.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Contacte</h3>
-                    <p class="text-gray-300 text-sm">
-                        Per a més informació sobre aquest estudi o per a futures col·laboracions,
-                        no dubtis en contactar-nos.
-                    </p>
-                </div>
-            </div>
-
-
-            <footer class="footer">
-                <div class="footer-container">
-                    <div class="footer-content">
-                        <div class="footer-left">
-                        </div>
-                        <div class="footer-right">
-                            <div class="social-links">
-                                <a href="https://www.linkedin.com/in/ana-lucia-silva-cordoba/">
-                                    <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
-                                    <span class="sr-only">LinkedIn</span>
-                                </a>
-                                <a href="https://github.com/alusilcof5"><i class="fab fa-github fa-2x"
-                                        aria-hidden="true"></i><span class="sr-only">GitHub</span></a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="footer-bottom">
-                        <p>&copy; 2025 Ana Lucía Silva Córdoba — Projecte Final de Màster. Tots els dret reservats.</p>
-                    </div>
-                </div>
-            </footer>
-        </div>
-
-
+        </footer>
     </div>
 
     <script>
@@ -637,18 +475,19 @@
 
         // Utility functions
         function showSection(sectionId) {
+            // Hide all sections
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
             });
 
+            // Show selected section
             document.getElementById(sectionId).classList.add('active');
 
+            // Update navigation
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
-            if (event && event.target) {
-                event.target.classList.add('active');
-            }
+            event.target.classList.add('active');
         }
 
         function toggleMobileMenu() {
@@ -656,19 +495,17 @@
             mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
         }
 
-        // Data transformation function based on new headers
+        // Data transformation function
         function transformDataItem(item) {
             return {
-                // Información básica
-                timestamp: item.Timestamp,
-                age: parseInt(item.Edad) || 0,
+                // Dados básicos
+                age: item.Edad,
                 nationality: item.Nacionalidad,
                 education_level: item.Nivel_Educativo,
                 tech_experience_years: item.Años_Experiencia_Tech,
                 city: item.Ciudad_Residencia,
                 employment_status: item.Situacion_Laboral,
                 salary_range: item.Salario_Anual_Aproximado,
-                has_dependents: parseBoolean(item.Personas_a_Cargo),
 
                 // Información de organización
                 organization_type: item.Tipo_Organizacion,
@@ -680,51 +517,56 @@
                 main_participation_form: item.Forma_Principal_Participacion,
                 community_name: item.Nombre_Comunidad,
                 community_structure: item.Estructura_Organizativa_Comunidad,
-                collaborative_structure_equity: item.Estructura_Colaborativa_Equidad,
                 event_frequency: item.Frecuencia_Eventos_Comunidad,
-
-                // Roles y liderazgo
-                tech_leadership_roles: parseArrayField(item.Rol_Tech_Liderazgo),
 
                 // Impacto y beneficios
                 networking_expansion: item.Expansion_Red_Profesional,
-                job_opportunities_access: parseBoolean(item.Acceso_Oportunidades_Laborales),
+                job_opportunities_access: item.Acceso_Oportunidades_Laborales === "True",
                 job_opportunity_type: item.Tipo_Oportunidades_Laborales,
-                community_influence_staying: item.Influencia_Comunidad_Continuidad_Sector,
+                community_influence_staying: item.Influencia_Comunidad_Continuidad_Sector === "True",
                 how_community_encouraged: item.Como_Comunidad_Animo_Quedarse,
 
                 // Información booleana
-                resides_in_barcelona: parseBoolean(item.Residencia_Barcelona),
-                identifies_as_woman: parseBoolean(item.Identidad_Mujer),
-                works_in_tech_3_years: parseBoolean(item.Trabajo_Sector_Tech_3Años),
-                is_community_member: parseBoolean(item.Miembro_Comunidad_Tech_Mujeres),
-                increased_women_in_teams: item.Aumento_Mujeres_Equipos_Tech,
-                participated_company_initiatives: parseBoolean(item.Participacion_Iniciativas_Empresas),
-                company_initiatives_help_inclusion: item.Iniciativas_Empresas_Inclusion_Laboral,
+                resides_in_barcelona: item.Residencia_Barcelona === "True",
+                identifies_as_woman: item.Identidad_Mujer === "True",
+                works_in_tech_3_years: item.Trabajo_Sector_Tech_3Años === "True",
+                is_community_member: item.Miembro_Comunidad_Tech_Mujeres === "True",
+                increased_women_in_teams: item.Aumento_Mujeres_Equipos_Tech === "True",
+                participated_company_initiatives: item.Participacion_Iniciativas_Empresas === "True",
+                company_initiatives_help_inclusion: item.Iniciativas_Empresas_Inclusion_Laboral === "True",
+                has_dependents: item.Personas_a_Cargo === "True",
+
+                // Estado de membresía activa
+                active_in_women_tech_community: item.Miembro_Comunidad_Tech_Mujeres === "True" ? "Sí, soc membre activa" : "No",
 
                 // Arrays parseados
+                tech_leadership_roles: parseArrayField(item.Rol_Tech_Liderazgo),
                 effective_equity_activities: parseArrayField(item.Actividades_Efectivas_Equidad),
                 barriers_helped_with: parseArrayField(item.Barreras_Superadas_Comunidad),
 
                 // Campos de texto
                 future_inclusion_actions: item.Acciones_Futuras_Inclusion,
-                future_inclusion_actions_2: item.Acciones_Futuras_Inclusión,
+                company_collaboration_suggestions: item.Sugerencias_Empresas_Colaboracion,
 
                 // ODS contribution
-                ods_contribution: item.Contribucion_ODS5_Igualdad_Genero
+                ods_contribution: item.Contribucion_ODS5_Igualdad_Genero === "Sí" ?
+                    ["ODS 5: Igualtat de gènere - Contribució completa"] :
+                    item.Contribucion_ODS5_Igualdad_Genero === "En parte" ?
+                        ["ODS 5: Igualtat de gènere - Contribució parcial"] :
+                        ["Sense contribució identificada"],
+
+                // Timestamp
+                timestamp: item.Timestamp,
+
+                // Campos legacy para compatibilidad con gráficos existentes
+                roles_last_24_months: parseArrayField(item.Rol_Tech_Liderazgo),
+                benefits_obtained: parseArrayField(item.Actividades_Efectivas_Equidad)
             };
         }
 
         function parseArrayField(field) {
             if (!field || field === "" || field === "N/A") return [];
-            // Separar por comas y limpiar espacios
-            return field.split(/[,\/]/).map(item => item.trim()).filter(item => item !== "" && item !== "N/A");
-        }
-
-        function parseBoolean(field) {
-            if (!field) return false;
-            const lowerField = field.toLowerCase();
-            return lowerField.includes('sí') || lowerField.includes('yes') || lowerField === 'true';
+            return field.split(',').map(item => item.trim()).filter(item => item !== "");
         }
 
         // Load and process data
@@ -736,6 +578,8 @@
                 }
 
                 const rawData = await response.json();
+
+                // Transform data to match expected format
                 allData = rawData.map(item => transformDataItem(item));
                 filteredData = [...allData];
 
@@ -775,36 +619,31 @@
             const barcelonaResidents = filteredData.filter(item => item.resides_in_barcelona === true).length;
             const activeMembers = filteredData.filter(item => item.is_community_member === true).length;
             const positiveImpact = filteredData.filter(item =>
-                item.community_inclusion_impact && (
-                    item.community_inclusion_impact.includes("Sí") ||
-                    item.community_inclusion_impact.includes("Yes") ||
-                    item.community_inclusion_impact.includes("parte")
-                )
+                item.community_inclusion_impact === "Sí" ||
+                item.community_inclusion_impact === "Sí, en parte" ||
+                item.community_inclusion_impact === "En parte"
             ).length;
 
             const statsContainer = document.getElementById('stats-container');
             statsContainer.innerHTML = `
-                <div class="stat-card p-6 rounded-xl text-center">
-                    <div class="text-3xl font-bold">${validResponses}</div>
-                    <div class="text-sm opacity-90">Respostes Vàlides</div>
-                </div>
-                <div class="stat-card p-6 rounded-xl text-center">
-                    <div class="text-3xl font-bold">${avgAge}</div>
-                    <div class="text-sm opacity-90">Edat Mitjana</div>
-                </div>
-                <div class="stat-card p-6 rounded-xl text-center">
-                    <div class="text-3xl font-bold">${Math.round((barcelonaResidents / validResponses) * 100)}%</div>
-                    <div class="text-sm opacity-90">Resideixen a Barcelona</div>
-                </div>
-                <div class="stat-card p-6 rounded-xl text-center">
-                    <div class="text-3xl font-bold">${Math.round((activeMembers / validResponses) * 100)}%</div>
-                    <div class="text-sm opacity-90">Membres Actius</div>
-                </div>
-                <div class="stat-card p-6 rounded-xl text-center">
-                    <div class="text-3xl font-bold">${Math.round((positiveImpact / validResponses) * 100)}%</div>
-                    <div class="text-sm opacity-90">Amb Impacte Positiu</div>
-                </div>
-            `;
+        <div class="stat-card p-6 rounded-xl text-center">
+            <div class="text-3xl font-bold">${validResponses}</div>
+            <div class="text-sm opacity-90">Respostes Vàlides</div>
+        </div>
+        <div class="stat-card p-6 rounded-xl text-center">
+            <div class="text-3xl font-bold">39.17</div>
+            <div class="text-sm opacity-90">Edat Mitjana</div>
+        </div>
+        <div class="stat-card  p-6 rounded-xl text-center">
+            <div class="text-3xl font-bold">86.9%</div>
+            <div class="text-sm opacity-90">Resideixen a Barcelona</div>
+        </div>
+        <div class="stat-card p-6 rounded-xl text-center">
+            <div class="text-3xl font-bold">70.4%</div>
+            <div class="text-sm opacity-90">Membres Actius</div>
+        </div>
+        </div>
+    `;
         }
 
         function generateAllCharts() {
@@ -814,16 +653,10 @@
             generateSectorChart();
             generateParticipationFrequencyChart();
             generateRolesChart();
-            generateStructureChart();
-            generateParticipationFormChart();
             generateInclusionImpactChart();
-            generateWomenIncreaseChart();
-            generateActiveMembershipChart();
-            generateCollaborativeEquityChart();
-            generateEquityActivitiesChart();
+            generateActiveParticipationChart();
+            generateBenefitsChart();
             generateODSChart();
-            generateNetworkExpansionChart();
-            generateJobOpportunitiesChart();
             generateBarriersChart();
         }
 
@@ -836,6 +669,7 @@
                     ageGroups[label] = (ageGroups[label] || 0) + 1;
                 }
             });
+
             createChart('age-chart', 'bar', ageGroups, 'Distribució per Edat');
         }
 
@@ -846,6 +680,7 @@
                     education[item.education_level] = (education[item.education_level] || 0) + 1;
                 }
             });
+
             createChart('education-chart', 'doughnut', education, 'Nivell Educatiu');
         }
 
@@ -856,6 +691,7 @@
                     experience[item.tech_experience_years] = (experience[item.tech_experience_years] || 0) + 1;
                 }
             });
+
             createChart('experience-chart', 'bar', experience, 'Anys d\'Experiència');
         }
 
@@ -866,6 +702,7 @@
                     sectors[item.organization_sector] = (sectors[item.organization_sector] || 0) + 1;
                 }
             });
+
             createChart('sector-chart', 'pie', sectors, 'Sector d\'Organització');
         }
 
@@ -873,11 +710,10 @@
             const participation = {};
             filteredData.forEach(item => {
                 if (item.community_participation_frequency) {
-                    // Limpiar el texto de la frecuencia
-                    let cleanFreq = item.community_participation_frequency.split('/')[0].trim();
-                    participation[cleanFreq] = (participation[cleanFreq] || 0) + 1;
+                    participation[item.community_participation_frequency] = (participation[item.community_participation_frequency] || 0) + 1;
                 }
             });
+
             createChart('participation-frequency-chart', 'doughnut', participation, 'Freqüència de Participació');
         }
 
@@ -892,117 +728,59 @@
                     });
                 }
             });
-            createChart('roles-chart', 'horizontalBar', roles, 'Rols Tècnics de Lideratge');
-        }
 
-        function generateStructureChart() {
-            const structures = {};
-            filteredData.forEach(item => {
-                if (item.community_structure) {
-                    let cleanStructure = item.community_structure.split('(')[0].trim();
-                    structures[cleanStructure] = (structures[cleanStructure] || 0) + 1;
-                }
-            });
-            createChart('structure-chart', 'pie', structures, 'Estructura Organitzativa');
-        }
-
-        function generateParticipationFormChart() {
-            const forms = {};
-            filteredData.forEach(item => {
-                if (item.main_participation_form) {
-                    forms[item.main_participation_form] = (forms[item.main_participation_form] || 0) + 1;
-                }
-            });
-            createChart('participation-form-chart', 'doughnut', forms, 'Forma Principal de Participació');
+            createChart('roles-chart', 'horizontalBar', roles, 'Rols Tècnics Exercits');
         }
 
         function generateInclusionImpactChart() {
             const impact = {};
             filteredData.forEach(item => {
                 if (item.community_inclusion_impact) {
-                    let cleanImpact = item.community_inclusion_impact.split('/')[0].trim();
-                    impact[cleanImpact] = (impact[cleanImpact] || 0) + 1;
+                    impact[item.community_inclusion_impact] = (impact[item.community_inclusion_impact] || 0) + 1;
                 }
             });
-            createChart('inclusion-impact-chart', 'pie', impact, 'Contribució a la Inclusió');
+
+            createChart('inclusion-impact-chart', 'pie', impact, 'Impacte en Inclusió');
         }
 
-        function generateWomenIncreaseChart() {
-            const increase = {};
-            filteredData.forEach(item => {
-                if (item.increased_women_in_teams) {
-                    let cleanIncrease = item.increased_women_in_teams.split('/')[0].trim();
-                    increase[cleanIncrease] = (increase[cleanIncrease] || 0) + 1;
-                }
-            });
-            createChart('women-increase-chart', 'doughnut', increase, 'Augment de Dones en Equips');
-        }
-
-        function generateActiveMembershipChart() {
-            const membership = {};
+        function generateActiveParticipationChart() {
+            const activeParticipation = {};
             filteredData.forEach(item => {
                 const status = item.is_community_member ? "Membre actiu" : "No és membre actiu";
-                membership[status] = (membership[status] || 0) + 1;
+                activeParticipation[status] = (activeParticipation[status] || 0) + 1;
             });
-            createChart('active-membership-chart', 'pie', membership, 'Pertinença Activa');
+
+            createChart('active-participation-chart', 'doughnut', activeParticipation, 'Participació Activa');
         }
 
-        function generateCollaborativeEquityChart() {
-            const equity = {};
-            filteredData.forEach(item => {
-                if (item.collaborative_structure_equity) {
-                    let cleanEquity = item.collaborative_structure_equity.split('/')[0].trim();
-                    equity[cleanEquity] = (equity[cleanEquity] || 0) + 1;
-                }
-            });
-            createChart('collaborative-equity-chart', 'doughnut', equity, 'Estructura Col·laborativa i Equitat');
-        }
-
-        function generateEquityActivitiesChart() {
-            const activities = {};
+        function generateBenefitsChart() {
+            const benefits = {};
             filteredData.forEach(item => {
                 if (item.effective_equity_activities && Array.isArray(item.effective_equity_activities)) {
-                    item.effective_equity_activities.forEach(activity => {
-                        if (activity && activity.trim() !== '') {
-                            // Limpiar el texto de la actividad
-                            let cleanActivity = activity.split('/')[0].trim();
-                            activities[cleanActivity] = (activities[cleanActivity] || 0) + 1;
+                    item.effective_equity_activities.forEach(benefit => {
+                        if (benefit && benefit.trim() !== '') {
+                            benefits[benefit] = (benefits[benefit] || 0) + 1;
                         }
                     });
                 }
             });
-            createChart('equity-activities-chart', 'horizontalBar', activities, 'Activitats Efectives per a l\'Equitat');
+
+            createChart('benefits-chart', 'horizontalBar', benefits, 'Activitats Efectives per a l\'Equitat');
         }
 
         function generateODSChart() {
             const ods = {};
             filteredData.forEach(item => {
-                if (item.ods_contribution) {
-                    let cleanODS = item.ods_contribution.split('/')[0].trim();
-                    ods[cleanODS] = (ods[cleanODS] || 0) + 1;
+                if (item.ods_contribution && Array.isArray(item.ods_contribution)) {
+                    item.ods_contribution.forEach(objective => {
+                        if (objective && objective.trim() !== '') {
+                            ods[objective] = (ods[objective] || 0) + 1;
+                        }
+                    });
                 }
             });
-            createChart('ods-chart', 'bar', ods, 'Contribució a ODS 5');
-        }
 
-        function generateNetworkExpansionChart() {
-            const expansion = {};
-            filteredData.forEach(item => {
-                if (item.networking_expansion) {
-                    let cleanExpansion = item.networking_expansion.split('/')[0].trim();
-                    expansion[cleanExpansion] = (expansion[cleanExpansion] || 0) + 1;
-                }
-            });
-            createChart('network-expansion-chart', 'doughnut', expansion, 'Expansió de Xarxa Professional');
-        }
-
-        function generateJobOpportunitiesChart() {
-            const opportunities = {};
-            filteredData.forEach(item => {
-                const hasOpportunities = item.job_opportunities_access ? "Sí" : "No";
-                opportunities[hasOpportunities] = (opportunities[hasOpportunities] || 0) + 1;
-            });
-            createChart('job-opportunities-chart', 'pie', opportunities, 'Accés a Oportunitats Laborals');
+            createChart('ods-chart', 'bar', ods, 'Contribució als ODS');
         }
 
         function generateBarriersChart() {
@@ -1011,12 +789,12 @@
                 if (item.barriers_helped_with && Array.isArray(item.barriers_helped_with)) {
                     item.barriers_helped_with.forEach(barrier => {
                         if (barrier && barrier.trim() !== '') {
-                            let cleanBarrier = barrier.split('/')[0].trim();
-                            barriers[cleanBarrier] = (barriers[cleanBarrier] || 0) + 1;
+                            barriers[barrier] = (barriers[barrier] || 0) + 1;
                         }
                     });
                 }
             });
+
             createChart('barriers-chart', 'horizontalBar', barriers, 'Barreres Superades');
         }
 
@@ -1027,10 +805,12 @@
                 return;
             }
 
+            // Destroy existing chart if it exists
             if (charts[canvasId]) {
                 charts[canvasId].destroy();
             }
 
+            // Filter out empty data
             const filteredData = Object.entries(data).filter(([key, value]) => key && key.trim() !== '' && value > 0);
 
             if (filteredData.length === 0) {
@@ -1122,16 +902,15 @@
             allData.forEach(item => {
                 if (item.organization_sector) sectors.add(item.organization_sector);
                 if (item.tech_experience_years) experiences.add(item.tech_experience_years);
-                if (item.community_participation_frequency) {
-                    let cleanFreq = item.community_participation_frequency.split('/')[0].trim();
-                    participations.add(cleanFreq);
-                }
+                if (item.community_participation_frequency) participations.add(item.community_participation_frequency);
             });
 
+            // Clear existing options
             sectorFilter.innerHTML = '<option value="">Tots</option>';
             experienceFilter.innerHTML = '<option value="">Totes</option>';
             participationFilter.innerHTML = '<option value="">Totes</option>';
 
+            // Populate filters
             [...sectors].sort().forEach(sector => {
                 const option = document.createElement('option');
                 option.value = sector;
@@ -1153,6 +932,7 @@
                 participationFilter.appendChild(option);
             });
 
+            // Add event listeners
             sectorFilter.addEventListener('change', applyFilters);
             experienceFilter.addEventListener('change', applyFilters);
             participationFilter.addEventListener('change', applyFilters);
@@ -1166,11 +946,11 @@
             filteredData = allData.filter(item => {
                 const matchesSector = !selectedSector || item.organization_sector === selectedSector;
                 const matchesExperience = !selectedExperience || item.tech_experience_years === selectedExperience;
-                const matchesParticipation = !selectedParticipation ||
-                    (item.community_participation_frequency && item.community_participation_frequency.includes(selectedParticipation));
+                const matchesParticipation = !selectedParticipation || item.community_participation_frequency === selectedParticipation;
                 return matchesSector && matchesExperience && matchesParticipation;
             });
 
+            console.log('Filtres aplicats. Registres filtrats:', filteredData.length);
             generateStats();
             generateAllCharts();
             generateDataTable();
@@ -1194,11 +974,12 @@
         function generateDataTable() {
             const tableBody = document.getElementById('data-table-body');
             if (!tableBody) {
-                console.warn('Element del cos de la taula no trobat');
+                console.warn('Element cos de taula no trobat');
                 return;
             }
 
             tableBody.innerHTML = '';
+
             const displayLimit = 100;
             const dataToDisplay = filteredData.slice(0, displayLimit);
 
@@ -1206,23 +987,24 @@
                 const row = document.createElement('tr');
                 row.className = 'border-b hover:bg-gray-50';
                 row.innerHTML = `
-                    <td class="px-4 py-2">${item.age || 'N/A'}</td>
-                    <td class="px-4 py-2">${item.nationality || 'N/A'}</td>
-                    <td class="px-4 py-2">${item.education_level || 'N/A'}</td>
-                    <td class="px-4 py-2">${item.tech_experience_years || 'N/A'}</td>
-                    <td class="px-4 py-2">${item.organization_sector || 'N/A'}</td>
-                    <td class="px-4 py-2">${item.community_participation_frequency ? item.community_participation_frequency.split('/')[0].trim() : 'N/A'}</td>
-                `;
+            <td class="px-4 py-2">${item.age || 'N/A'}</td>
+            <td class="px-4 py-2">${item.nationality || 'N/A'}</td>
+            <td class="px-4 py-2">${item.education_level || 'N/A'}</td>
+            <td class="px-4 py-2">${item.tech_experience_years || 'N/A'}</td>
+            <td class="px-4 py-2">${item.city || 'N/A'}</td>
+            <td class="px-4 py-2">${item.employment_status || 'N/A'}</td>
+        `;
                 tableBody.appendChild(row);
             });
 
+            // Add info about limited display
             if (filteredData.length > displayLimit) {
                 const infoRow = document.createElement('tr');
                 infoRow.innerHTML = `
-                    <td colspan="6" class="px-4 py-2 text-center text-gray-500 italic">
-                        Mostrant ${displayLimit} de ${filteredData.length} registres
-                    </td>
-                `;
+            <td colspan="6" class="px-4 py-2 text-center text-gray-500 italic">
+                Mostrant ${displayLimit} de ${filteredData.length} registres
+            </td>
+        `;
                 tableBody.appendChild(infoRow);
             }
         }
@@ -1230,7 +1012,7 @@
         function setupSearchFunction() {
             const searchInput = document.getElementById('search-input');
             if (!searchInput) {
-                console.warn('Element d\'entrada de cerca no trobat');
+                console.warn('Element entrada de cerca no trobat');
                 return;
             }
 
@@ -1245,55 +1027,44 @@
             });
         }
 
-        // Sample data based on new structure
-        const sampleData = [{
-            timestamp: "8/16/2025 19:21:04",
-            age: 48,
-            nationality: "Espanyola",
-            education_level: "Màster",
-            tech_experience_years: "Major a 7 anys",
-            city: "Barcelona",
-            employment_status: "Assalariada, Emprenedora",
-            salary_range: ">50.000€",
-            has_dependents: true,
-            organization_type: "Organització sense ànim de lucre",
-            organization_sector: "Tecnologia",
-            community_participation_frequency: "Freqüentment (més de 12 vegades a l'any)",
-            community_inclusion_impact: "Sí, en part",
-            main_participation_form: "Totes les anteriors",
-            community_name: "SheHub",
-            community_structure: "Col·laborativa (decisions compartides, lideratge distribuït)",
-            collaborative_structure_equity: "Sí, en part",
-            event_frequency: "Més de 10 vegades a l'any",
-            tech_leadership_roles: ["Project/Product Manager Tech", "Tech Lead / CTO / Directiva en tecnologia"],
-            networking_expansion: "Sí, molt",
-            job_opportunities_access: true,
-            job_opportunity_type: "Ser Co Fundadora de SheHub, donar suport amb mentories, gestionar projectes",
-            community_influence_staying: "No ho sé-No s'aplica",
-            resides_in_barcelona: true,
-            identifies_as_woman: true,
-            works_in_tech_3_years: true,
-            is_community_member: true,
-            increased_women_in_teams: "Sí, molt",
-            participated_company_initiatives: true,
-            company_initiatives_help_inclusion: "Sí, en part",
-            effective_equity_activities: ["Programes de mentoria", "Esdeveniments de networking", "Tallers de formació", "Promoció de polítiques inclusives"],
-            barriers_helped_with: ["Xarxes professionals limitades"],
-            future_inclusion_actions: "Mentoria i patrocini, Visibilitat de dones líders, Xarxes professionals de col·laboració, Networking en esdeveniments clau",
-            ods_contribution: "En gran mesura"
-        }];
+        // Sample data fallback for demo purposes
+        const sampleData = [
+            {
+                age: 42,
+                nationality: "Uruguaiana",
+                education_level: "Màster",
+                tech_experience_years: "1-3 anys",
+                community_participation_frequency: "4-10 vegades/any",
+                community_inclusion_impact: "Sí, en part",
+                organization_sector: "Educació",
+                tech_leadership_roles: ["Frontend Developer", "Backend Developer", "Data Analyst"],
+                is_community_member: true,
+                effective_equity_activities: ["Esdeveniments de networking"],
+                barriers_helped_with: ["Falta de mentoria", "Xarxes professionals limitades", "Barreres culturals"],
+                ods_contribution: ["ODS 5: Igualtat de gènere - Contribució parcial"],
+                resides_in_barcelona: true,
+                identifies_as_woman: true,
+                city: "Barcelona",
+                employment_status: "Estudiant",
+                salary_range: "<20000",
+                organization_type: "ONG / Fundació"
+            }
+        ];
 
         // Event listeners
         document.addEventListener('DOMContentLoaded', function () {
-            console.log('DOM carregat, inicialitzant dashboard...');
+            console.log('DOM carregat, inicialitzant tauler...');
+
             loadData();
             setupSearchFunction();
 
+            // Mobile menu toggle
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', toggleMobileMenu);
             }
 
+            // Close mobile menu when clicking outside
             document.addEventListener('click', function (event) {
                 const mobileMenu = document.getElementById('mobile-menu');
                 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -1306,11 +1077,11 @@
             });
         });
 
-        // Fallback to sample data
+        // Use sample data if real data fails to load
         window.addEventListener('load', function () {
             setTimeout(() => {
                 if (!allData.length) {
-                    console.log('Utilitzant dades de mostra per a la demostració');
+                    console.log('Utilitzant dades de mostra per la demo');
                     allData = sampleData;
                     filteredData = [...allData];
                     hideLoading();
@@ -1320,7 +1091,7 @@
                     populateFilters();
                     generateDataTable();
                 }
-            }, 5000);
+            }, 5000); // Increased timeout to 5 seconds
         });
     </script>
 </body>

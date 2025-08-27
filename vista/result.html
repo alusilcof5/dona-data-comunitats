@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anàlisi Dones en Tecnologia - Tauler Professional</title>
+  <link rel="stylesheet" href="./css/resuls.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/directory.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="logo">
+      <img src="../assets/images/logo-dona.png" alt="Logo" class="logo-img">
+    </a>
+    <ul class="nav-menu">
+      <li><a href="./directory.html" class="nav-link">Directori</a></li>
+      <li><a href="./dashboard.html" class="nav-link">Estudi</a></li>
+      <li><a href="./info.html" class="nav-link">Informació</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Pantalla d'Error -->
+<div id="error" class="fixed inset-0 bg-red-50 flex items-center justify-center z-50" style="display: none;">
+  <div class="text-center p-8">
+    <div class="text-red-500 text-6xl mb-4">⚠️</div>
+    <h2 class="text-2xl font-bold text-red-700 mb-2">Error en carregar les dades</h2>
+    <p id="error-message" class="text-red-600">No s'ha pogut accedir a l'arxiu 'output.json'. Verifica que estigui
+      a la mateixa carpeta que aquest arxiu.</p>
+  </div>
+</div>
+
+<body class="min-h-screen py px">
+  <div class="max-w-7xl mx-auto">
+    <!-- Capçalera -->
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-bold text-[#8b5cf6] mb-4 mt-[30px]">
+        Tauler Professional: Dones en Tecnologia
+      </h1>
+
+
+      <p class="text-xl text-gray-600">Anàlisi estadística avançada per a validació d'hipòtesis de recerca</p>
+    </div>
+
+    <!-- Estat de Càrrega -->
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p class="ml-4 text-gray-600">Carregant i processant dades des de dados_tech_mujeres.json...</p>
+    </div>
+
+    <!-- Contingut -->
+    <div id="content" class="hidden">
+      <!-- Estadístiques Resum Executiu -->
+      <div class="card p-8 mb-12">
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6" id="stats-container">
+          <!-- Stats generades dinàmicament -->
+        </div>
+        <div id="sample-info" class="mt-6 text-center text-gray-600">
+          <!-- Info de mostra -->
+        </div>
+      </div>
+
+      <!-- Targetes d'Hipòtesis -->
+      <div id="hypothesis-cards">
+        <div id="hypothesis-cards" class="flex flex-col">
+  <!-- Hipòtesi 1 -->
+  <div class="card p-8 mb-8 hypothesis-card" id="hypothesis1">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-3xl font-semibold text-gray-800">Hipòtesi 1: Visibilitat i Representació</h2>
+      <div id="correlacion-h1" class="correlation-indicator correlation-medium">Processant...</div>
+    </div>
+    <p class="text-lg text-gray-600 mb-6">
+      <strong>Hipòtesi:</strong> La participació activa en comunitats s'associa amb major representació
+      femenina en equips tecnològics i reducció de barreres de gènere.
+    </p>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="chart-container">
+        <canvas id="hipotesis1Chart"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="hipotesis1bChart"></canvas>
+      </div>
+    </div>
+    <div class="analysis-box">
+      <h4 class="font-bold text-lg mb-3">Anàlisi de Resultats - Hipòtesi 1:</h4>
+      <div id="analysis-h1">Processant anàlisi estadística...</div>
+    </div>
+  </div>
+  
+ 
+
+        <!-- Hipòtesi 2 -->
+        <div class="card p-8 mb-8 hypothesis-card" id="hypothesis2">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-semibold text-gray-800">Hipòtesi 2: Estructures Organitzatives</h2>
+            <div id="correlacion-h2" class="correlation-indicator correlation-medium">No validada</div>
+          </div>
+          <p class="text-lg text-gray-600 mb-6">
+            <strong>Hipòtesi:</strong> Les estructures col·laboratives afavoreixen més l'equitat de gènere que les
+            jeràrquiques.
+          </p>
+          <div class="chart-container">
+            <canvas id="hipotesis2Chart"></canvas>
+          </div>
+          <div class="analysis-box">
+            <h4 class="font-bold text-lg mb-3"> Anàlisi de Resultats - Hipòtesi 2:</h4>
+            <div id="analysis-h2">Processant anàlisi estadística...</div>
+          </div>
+        </div>
+
+
+        <!-- Hipòtesi 3 -->
+        <div class="card p-8 mb-8 hypothesis-card" id="hypothesis3">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-semibold text-gray-800">Hipòtesi 3: Col·laboració amb Empreses</h2>
+            <div id="correlacion-h3" class="correlation-indicator correlation-medium">Processant...</div>
+          </div>
+          <p class="text-lg text-gray-600 mb-6">
+            <strong>Hipòtesi:</strong> La col·laboració comunitat-empresa impulsa iniciatives d'igualtat de gènere.
+          </p>
+
+          <!-- Una sola columna: gràfic a dalt i núvol a baix -->
+          <div class="flex flex-col gap-8">
+            <!-- Gràfic 1 -->
+            <div class="chart-container w-full">
+              <canvas id="hipotesis3Chart"></canvas>
+            </div>
+
+            <!-- Núvol de paraules -->
+            <div id="wordCloud" class="w-full bg-white border border-gray-200 rounded-lg p-6 relative overflow-hidden 
+                    min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
+            </div>
+          </div>
+
+          <div class="analysis-box mt-8">
+            <h4 class="font-bold text-lg mb-3"> Anàlisi de Resultats - Hipòtesi 3:</h4>
+            <div id="analysis-h3">Processant anàlisi estadística...</div>
+          </div>
+        </div>
+        <!-- Hipòtesi 4 -->
+        <div class="card p-8 mb-8 hypothesis-card" id="hypothesis4">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-semibold text-gray-800">Hipòtesi 4: Participació en Esdeveniments</h2>
+            <div id="correlacion-h4" class="correlation-indicator correlation-medium">Processant...</div>
+          </div>
+          <p class="text-lg text-gray-600 mb-6">
+            <strong>Hipòtesi:</strong> Major freqüència de participació es correlaciona amb més oportunitats
+            laborals.
+          </p>
+          <div class="chart-container">
+            <canvas id="hipotesis4Chart"></canvas>
+          </div>
+          <div class="analysis-box">
+            <h4 class="font-bold text-lg mb-3"> Anàlisi de Resultats - Hipòtesi 4:</h4>
+            <div id="analysis-h4">Processant anàlisi estadística...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusions Generals -->
+      <div class="card p-8 mb-8">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Conclusions de l'Estudi</h2>
+        <div id="conclusiones-generales" class="text-lg text-gray-700 leading-relaxed">
+          Processant conclusions basades en l'anàlisi estadística...
+        </div>
+      </div>
+    </div>
+
+    <!-- Estat d'Error -->
+    <div id="error" class="hidden card p-8 text-center">
+      <div class="text-6xl mb-4">❌</div>
+      <h2 class="text-2xl font-semibold text-red-600 mb-4">Error en carregar les dades</h2>
+      <p class="text-gray-600 mb-4">No s'ha pogut carregar l'arxiu output.json</p>
+      <p class="text-sm text-gray-500">Assegura't que l'arxiu existeix i està a la mateixa carpeta</p>
+    </div>
+  </div>
+
+ <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-8 mt-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Agradecimientos</h3>
+                        <p class="text-gray-300 text-sm">
+                            Gracias a todas las profesionales que participaron en esta encuesta,
+                            contribuyendo con sus experiencias y perspectivas.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Sobre el Proyecto</h3>
+                        <p class="text-gray-300 text-sm">
+                            Este dashboard forma parte de un trabajo académico que analiza
+                            el impacto de las comunidades de mujeres en tecnología.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Contacto</h3>
+                        <p class="text-gray-300 text-sm">
+                            Para más información sobre este estudio o para colaboraciones futuras,
+                            no dudes en contactarnos.
+                        </p>
+                    </div>
+                </div>
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+                    <p>&copy; 2025. Todos los derechos reservados.</p>
+                </div>
+        </footer>
+
+  <script src="../controller/results.js"></script>
+</body>
+
+</html>
+

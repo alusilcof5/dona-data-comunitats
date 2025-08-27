@@ -1,0 +1,212 @@
+   :root {
+     --primary: #6366f1;
+     --secondary: #8b5cf6;
+     --accent: #ec4899;
+     --success: #10b981;
+     --warning: #f59e0b;
+     --light: #f8fafc;
+     --dark: #1e293b;
+   }
+
+   body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+     min-height: 100vh;
+   }
+
+   .card {
+     background: white;
+     border-radius: 16px;
+     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+
+   .card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+   }
+
+   .chart-container {
+     position: relative;
+     height: 400px;
+     width: 100%;
+   }
+
+   .loading {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 200px;
+   }
+
+   .spinner {
+     width: 40px;
+     height: 40px;
+     border: 4px solid #f3f3f3;
+     border-top: 4px solid var(--primary);
+     border-radius: 50%;
+     animation: spin 1s linear infinite;
+   }
+
+   @keyframes spin {
+     0% {
+       transform: rotate(0deg);
+     }
+
+     100% {
+       transform: rotate(360deg);
+     }
+   }
+
+   #hypothesis-cards {
+     display: flex;
+     flex-direction: column;
+     /* Para apilar las tarjetas verticalmente */
+   }
+
+   .card {
+     margin-bottom: 20px;
+     /* Espacio entre las tarjetas */
+   }
+
+
+   .hypothesis-card {
+     border-left: 4px solid var(--primary);
+   }
+
+   .stat-number {
+     font-size: 2.5rem;
+     font-weight: bold;
+     background: linear-gradient(135deg, var(--primary), var(--secondary));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+   }
+
+   .analysis-box {
+     background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+     border-left: 4px solid var(--accent);
+     border-radius: 8px;
+     padding: 20px;
+     margin-top: 20px;
+   }
+
+   .correlation-indicator {
+     display: inline-block;
+     padding: 4px 12px;
+     border-radius: 20px;
+     font-size: 0.875rem;
+     font-weight: 600;
+     color: white;
+   }
+
+   .correlation-strong {
+     background-color: var(--success);
+   }
+
+   .correlation-medium {
+     background-color: var(--warning);
+   }
+
+   .correlation-weak {
+     background-color: #ef4444;
+   }
+
+   /* ===== Estils Núvol de Paraules (Hipòtesi 3) ===== */
+   .word {
+     position: absolute;
+     font-weight: 500;
+     cursor: pointer;
+     transition: all 0.2s ease;
+     color: #4a5568;
+     user-select: none;
+   }
+
+   .word:hover {
+     color: #2d3748;
+     font-weight: 600;
+   }
+
+   .size-1 {
+     font-size: 4.5rem;
+   }
+
+   .size-2 {
+     font-size: 3.8rem;
+   }
+
+   .size-3 {
+     font-size: 3.2rem;
+   }
+
+   .size-4 {
+     font-size: 2.8rem;
+   }
+
+   .size-5 {
+     font-size: 2.4rem;
+   }
+
+   .size-6 {
+     font-size: 1.8rem;
+   }
+
+   .color-frequent {
+     color: #8B5A9F;
+   }
+
+   .color-1 {
+     color: #1a202c;
+   }
+
+   .color-2 {
+     color: #2d3748;
+   }
+
+   .color-3 {
+     color: #4a5568;
+   }
+
+   .color-4 {
+     color: #718096;
+   }
+
+   .rotate-1 {
+     transform: rotate(-25deg);
+   }
+
+   .rotate-2 {
+     transform: rotate(15deg);
+   }
+
+   .rotate-3 {
+     transform: rotate(-35deg);
+   }
+
+   .rotate-4 {
+     transform: rotate(28deg);
+   }
+
+   .rotate-5 {
+     transform: rotate(-18deg);
+   }
+
+   .rotate-6 {
+     transform: rotate(42deg);
+   }
+
+   .rotate-7 {
+     transform: rotate(-8deg);
+   }
+
+   .rotate-8 {
+     transform: rotate(33deg);
+   }
+
+   .rotate-9 {
+     transform: rotate(-45deg);
+   }
+
+   .rotate-10 {
+     transform: rotate(22deg);
+   }
+
